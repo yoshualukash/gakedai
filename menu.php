@@ -55,18 +55,33 @@ if (isset($_SESSION['login'])) {
 							<div class="menus d-flex ftco-animate">
 								<div class="menu-img img zoom" style="background-image: url(menu_image/<?php echo $row['photo']; ?>);"></div>
 								<div class="text">
-									<div class="d-flex">
-										<div class="one-half">
-											<h3><?php echo $row['name']; ?></h3>
+									<?php if ($row['status_menu'] == '0') : ?>
+										<div class="d-flex">
+											<div class="one-half">
+												<h3><?php echo $row['name']; ?></h3>
+											</div>
+											<div class="one-forth">
+												<span class="price">Rp<?php echo number_format($row['price']); ?></span>
+											</div>
 										</div>
-										<div class="one-forth">
-											<span class="price">Rp<?php echo number_format($row['price']); ?></span>
+										<p><span><?php echo $row['detail']; ?></span></p>
+										<div class="clearfix" role="group" aria-label="Basic example">
+											<a href="beli.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-success float-right">Add to cart</a>
 										</div>
-									</div>
-									<p><span><?php echo $row['detail']; ?></span></p>
-									<div class="clearfix" role="group" aria-label="Basic example">
-										<a href="beli.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-success float-right">Add to cart</a>
-									</div>
+									<?php else : ?>
+										<div class="d-flex">
+											<div class="one-half">
+												<h3><?php echo $row['name']; ?></h3>
+											</div>
+											<div class="one-forth">
+												<span class="price">Rp<?php echo number_format($row['price']); ?></span>
+											</div>
+										</div>
+										<p><span><?php echo $row['detail']; ?></span></p>
+										<div class="clearfix" role="group" aria-label="Basic example">
+											<h6 class="float-right" style="color:red">Menu Habis</h6>
+										</div>
+									<?php endif; ?>
 								</div>
 							</div>
 						<?php }; ?>

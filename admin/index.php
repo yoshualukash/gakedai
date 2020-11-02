@@ -1,13 +1,4 @@
-<?php
-session_start();
-if (isset($_SESSION['password'])) {
-  $username = $_SESSION['username'];
-}
-if (!isset($_SESSION['password'])) {
-  header('location:login.php');
-} else if (isset($_SESSION['password'])) {
-  $username = $_SESSION['username'];
-} ?>
+<?php include_once 'admin_includes.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +11,8 @@ if (!isset($_SESSION['password'])) {
   <link rel="icon" href="../images/logo_gakedai.png" type="image/png">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Theme style -->
@@ -65,61 +58,73 @@ if (!isset($_SESSION['password'])) {
           <!-- Info boxes -->
           <div class="row">
             <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box">
-                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+              <?php $sql_1 = "SELECT * FROM daftar_order";
+              $result_1 = mysqli_query($conn, $sql_1);
+              $row_1 = mysqli_num_rows($result_1); ?>
+              <div class="small-box bg-success">
+                <div class="inner">
+                  <h3><?php echo $row_1; ?></h3>
 
-                <div class="info-box-content">
-                  <span class="info-box-text">Order</span>
-                  <span class="info-box-number">0</span>
+                  <p>Orders</p>
                 </div>
-                <!-- /.info-box-content -->
+                <div class="icon">
+                  <i class="ion ion-ios-cart"></i>
+                </div>
+                <a href="listOrder.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
               <!-- /.info-box -->
             </div>
             <!-- /.col -->
             <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box mb-3">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+              <?php $sql_2 = "SELECT * FROM tblmenu";
+              $result_2 = mysqli_query($conn, $sql_2);
+              $row_2 = mysqli_num_rows($result_2); ?>
+              <div class="small-box bg-info">
+                <div class="inner">
+                  <h3><?php echo $row_2; ?></h3>
 
-                <div class="info-box-content">
-                  <span class="info-box-text">New Members</span>
-                  <span class="info-box-number">2</span>
+                  <p>Total Menu</p>
                 </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-
-            <!-- fix for small devices only -->
-            <div class="clearfix hidden-md-up"></div>
-
-            <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box mb-3">
-                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
-                <div class="info-box-content">
-                  <span class="info-box-text">Sales</span>
-                  <span class="info-box-number">0</span>
+                <div class="icon">
+                  <i class="ion ion-ios-bookmarks"></i>
                 </div>
-                <!-- /.info-box-content -->
+                <a href="listMakanan.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
               <!-- /.info-box -->
             </div>
             <!-- /.col -->
             <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box mb-3">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+              <?php $sql_3 = "SELECT * FROM account_google";
+              $result_3 = mysqli_query($conn, $sql_3);
+              $row_3 = mysqli_num_rows($result_3); ?>
+              <div class="small-box bg-primary">
+                <div class="inner">
+                  <h3><?php echo $row_3; ?></h3>
 
-                <div class="info-box-content">
-                  <span class="info-box-text">Total Members</span>
-                  <span class="info-box-number">10</span>
+                  <p>User Registrations</p>
                 </div>
-                <!-- /.info-box-content -->
+                <div class="icon">
+                  <i class="ion ion-person-add"></i>
+                </div>
+                <a href="list_accGoogle.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
               <!-- /.info-box -->
             </div>
             <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="small-box bg-warning">
+                <div class="inner">
+                  <h3>Rp. <?php echo number_format(0); ?></h3>
+
+                  <p>Income / Revenue</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+              <!-- /.info-box -->
+            </div>
           </div>
           <!-- /.row -->
           <!-- TABLE: LATEST ORDERS -->
@@ -152,7 +157,6 @@ if (!isset($_SESSION['password'])) {
                   </thead>
                   <tbody>
                     <?php
-                    include("connection.php");
                     $sql = "SELECT * FROM daftar_order ORDER BY id_order desc LIMIT 5";
                     $result = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_array($result)) { ?>

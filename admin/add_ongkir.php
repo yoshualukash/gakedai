@@ -1,3 +1,4 @@
+<?php include_once 'admin_includes.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 

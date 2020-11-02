@@ -203,25 +203,33 @@ if (isset($_GET['id'])) {
                         <div id="myModal" class="modal fade">
                             <div class="modal-dialog">
                                 <div class="modal-content">
+                                    <?php $ambil1 = $conn->query("SELECT * FROM daftar_order JOIN account_google ON daftar_order.id_pelanggan = account_google.id WHERE daftar_order.id_order='$_GET[id]'");
+                                    $detail = $ambil1->fetch_assoc(); ?>
                                     <div class="modal-header">
-                                        <h2>Rincian Order</h2>
+                                        <h2>Rincian Order #<?php echo $detail['id_order']; ?></h2>
                                         <a href="listOrder.php">&times;</a>
                                     </div>
                                     <div class="modal-body">
-                                        <?php $ambil1 = $conn->query("SELECT * FROM daftar_order JOIN account_google ON daftar_order.id_pelanggan = account_google.id WHERE daftar_order.id_order='$_GET[id]'");
-                                        $detail = $ambil1->fetch_assoc(); ?>
-                                        <table class="table table-borderless">
-                                            <tbody>
-                                                <tr>
-                                                    <td>Nama Pemesan</td>
-                                                    <td> : <?php echo $detail['nama']; ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>No Telepon</td>
-                                                    <td> : <?php echo $detail['no_telepon']; ?></td>
-                                                </tr>
-                                        </table>
-                                        <h5>Alamat : <?php echo $detail['alamat']; ?></h5>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h6>Customer &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:&nbsp; <?php echo $detail['nama']; ?></h6>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h6 style="text-align:right;">Order No : &nbsp; <?php echo $detail['id_order']; ?></h6>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h6>Ongkos Kirim &nbsp; &nbsp; &nbsp;: &nbsp;Rp.<?php echo number_format($detail['tarif']); ?> (<?php echo $detail['nama_daerah']; ?>)</h6>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h6>Nomor Telepon &nbsp;: &nbsp;<?php echo $detail['no_telepon']; ?></h6>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h6>Alamat Antar &nbsp; &nbsp; &nbsp;:&nbsp; <?php echo $detail['alamat']; ?></h6>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h6><?php echo $detail['tanggal_beli']; ?> &nbsp; <?php echo $detail['waktu_beli']; ?></h6>
+                                            </div>
+                                        </div>
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>

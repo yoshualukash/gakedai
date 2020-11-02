@@ -32,12 +32,12 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th>ID</th>
                                         <th>Photo</th>
                                         <th>Nama Makanan</th>
-                                        <th>ID</th>
                                         <th>Harga</th>
                                         <th>Deskripsi</th>
+                                        <th>Status Menu</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -46,13 +46,10 @@
                                     include("connection.php");
                                     $sql = "SELECT * FROM tblmenu WHERE type='Makanan' ORDER BY id ";
                                     $result = mysqli_query($conn, $sql);
-                                    $i = 1;
                                     while ($row = mysqli_fetch_array($result)) { ?>
                                         <!--open of while -->
                                         <tr>
-                                            <td><b><?php echo $i;
-                                                    $i++; ?></b>
-                                            </td>
+                                            <td><?php echo $row['id']; ?></td>
                                             <td>
                                                 <ul class="list-inline">
                                                     <li class="list-inline-item">
@@ -61,20 +58,37 @@
                                                 </ul>
                                             </td>
                                             <td><?php echo $row['name']; ?></td>
-                                            <td><?php echo $row['id']; ?></td>
                                             <td><?php echo $row['price']; ?></td>
                                             <td><?php echo $row['detail']; ?></td>
+                                            <form action="update_statusmenumakan.php" method='post' enctype="multipart/form-data">
+                                                <td>
+                                                    <?php if ($row['status_menu'] == '0') : ?>
+                                                        <select class="form-control" name="status_menu">
+                                                            <option value="0" class="form-control" selected>✅ Tersedia</option>
+                                                            <option value="1" class="form-control">❌ Habis</option>
+                                                        </select>
+                                                    <?php else : ?>
+                                                        <select class="form-control" name="status_menu">
+                                                            <option value="0" class="form-control">✅ Tersedia</option>
+                                                            <option value="1" class="form-control" selected>❌ Habis</option>
+                                                        </select>
+                                                    <?php endif; ?>
+                                                    <hr>
+                                                    <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>" readonly>
+                                                    <button class="btn btn-info btn-sm float-right" type="submit" name="update_statusmenumakan">
+                                                        <i class="fas fa-pencil-alt">
+                                                        </i>
+                                                        Update
+                                                    </button>
+                                                </td>
+                                            </form>
                                             <td class="project-actions text-right">
                                                 <a class="btn btn-info btn-sm" href="editListMakan.php?id=<?php echo $row['id']; ?>">
                                                     <i class=" fas fa-pencil-alt">
                                                     </i>
                                                     Edit
                                                 </a>
-                                                <!-- <a class="btn btn-info btn-sm" href="#">
-                                                    <i class="fas fa-pencil-alt">
-                                                    </i>
-                                                    Edit
-                                                </a> -->
+                                                <hr>
                                                 <a class="btn btn-danger btn-sm " onclick="return confirmDel()" href="delete_dataMenuMakan.php?delID=<?php echo $row['id']; ?>">
                                                     <i class="fas fa-trash">
                                                     </i>

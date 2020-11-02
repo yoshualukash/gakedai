@@ -11,10 +11,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="../images/admin1.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="../images/defaultadmin.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Admin1</a>
+                <a href="#" class="d-block"><?php echo $username; ?></a>
             </div>
         </div>
 
@@ -103,14 +103,17 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="list_accAdmin.php" class="nav-link">
-                                <i class="fas fa-users-cog nav-icon"></i>
-                                <p>
-                                    Admin
-                                </p>
-                            </a>
-                        </li>
+                        <?php if ($rowadmin['role'] == 'Super-admin') : ?>
+                            <li class="nav-item">
+                                <a href="list_accAdmin.php" class="nav-link">
+                                    <i class="fas fa-users-cog nav-icon"></i>
+                                    <p>
+                                        Admin
+                                    </p>
+                                </a>
+                            </li>
+                        <?php else : ?>
+                        <?php endif; ?>
                     </ul>
                 </li>
                 <li class="nav-item ">
@@ -130,14 +133,17 @@
                     </a>
                 </li>
                 <li class="nav-header">Function</li>
-                <li class="nav-item">
-                    <a href="add_admin.php" class="nav-link">
-                        <i class="fa fa-user-plus nav-icon"></i>
-                        <p>
-                            Tambah Akun Admin
-                        </p>
-                    </a>
-                </li>
+                <?php if ($rowadmin['role'] == 'Super-admin') : ?>
+                    <li class="nav-item">
+                        <a href="add_admin.php" class="nav-link">
+                            <i class="fa fa-user-plus nav-icon"></i>
+                            <p>
+                                Tambah Akun Admin
+                            </p>
+                        </a>
+                    </li>
+                <?php else : ?>
+                <?php endif; ?>
                 <li class="nav-item">
                     <a href="add_menu.php" class="nav-link">
                         <i class="fa fa-user-plus nav-icon"></i>
