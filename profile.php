@@ -29,6 +29,7 @@ if (isset($_SESSION['login'])) {
                 <ul class='dropdown-menu'>
                     <li class='nav-item'><a href='profile.php' class='nav-link'><span style="color:red">Profile</span></a>
                     <li class='nav-item'><a href='myorder.php' class='nav-link'><span style="color:red">My Order</span></a>
+                    <li class='nav-item'><a href='myhistoryorder.php' class='nav-link'><span style="color:red">History Order</span></a>
                     <li class='nav-item'><a href='logout.php' class='nav-link'><span style="color:red">Logout</span></a>
                 </ul>
             </li>
@@ -90,14 +91,14 @@ if (isset($_SESSION['login'])) {
                         </tr>
                         <tr>
                             <td>Total Order Belum Lunas</td>
-                            <?php $sql1 = "SELECT * FROM daftar_order WHERE id_pelanggan='$id_user' AND status_pesan='0'";
+                            <?php $sql1 = "SELECT * FROM daftar_order WHERE id_pelanggan='$id_user' AND status_pesan='0' AND status_tracking<='2'";
                             $result = mysqli_query($conn, $sql1);
                             $row1 = mysqli_num_rows($result); ?>
                             <td><b><?php echo $row1; ?></b></td>
                         </tr>
                         <tr>
                             <td>Total Order Lunas</td>
-                            <?php $sql1 = "SELECT * FROM daftar_order WHERE id_pelanggan='$id_user' AND status_pesan='2'";
+                            <?php $sql1 = "SELECT * FROM daftar_order WHERE id_pelanggan='$id_user' AND status_tracking='3'";
                             $result = mysqli_query($conn, $sql1);
                             $row1 = mysqli_num_rows($result); ?>
                             <td><b><?php echo $row1; ?></b></td>

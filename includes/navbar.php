@@ -4,6 +4,7 @@
         <ul class='dropdown-menu'>
             <li class='nav-item'><a href='profile.php' class='nav-link'><span style="color:red">Profile</span></a>
             <li class='nav-item'><a href='myorder.php' class='nav-link'><span style="color:red">My Order</span></a>
+            <li class='nav-item'><a href='myhistoryorder.php' class='nav-link'><span style="color:red">History Order</span></a>
             <li class='nav-item'><a href='logout.php' class='nav-link'><span style="color:red">Logout</span></a>
         </ul>
     </li>

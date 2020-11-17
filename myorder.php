@@ -37,6 +37,17 @@ if (isset($_POST["tombolbukti"])) {
         $("#myModal").modal('show');
     });
 </script>
+<script type="text/javascript">
+    function confirmDelOrder() {
+        var x = confirm("Anda yakin ingin membatalkan order?");
+
+        if (x == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 <div class="collapse navbar-collapse" id="ftco-nav">
     <ul class="navbar-nav ml-auto">
         <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
@@ -49,6 +60,7 @@ if (isset($_POST["tombolbukti"])) {
                 <ul class='dropdown-menu'>
                     <li class='nav-item'><a href='profile.php' class='nav-link'><span style="color:red">Profile</span></a>
                     <li class='nav-item'><a href='myorder.php' class='nav-link'><span style="color:red">My Order</span></a>
+                    <li class='nav-item'><a href='myhistoryorder.php' class='nav-link'><span style="color:red">History Order</span></a>
                     <li class='nav-item'><a href='logout.php' class='nav-link'><span style="color:red">Logout</span></a>
                 </ul>
             </li>
@@ -100,7 +112,7 @@ if (isset($_POST["tombolbukti"])) {
                         </thead>
                         <tbody>
                             <?php
-                            $sql = "SELECT * FROM daftar_order WHERE id_pelanggan='$id_user'";
+                            $sql = "SELECT * FROM daftar_order WHERE id_pelanggan='$id_user' AND status_tracking<='2'";
                             $result = mysqli_query($conn, $sql);
                             while ($row = mysqli_fetch_array($result)) { ?>
                                 <tr>
@@ -140,7 +152,7 @@ if (isset($_POST["tombolbukti"])) {
                                     <?php else : ?>
                                         <td>Belum ada bukti bayar
                                             <hr>
-                                            <a class="btn btn-warning btn-sm float-right" href="myorder.php?id_order=<?php echo $row['id_order']; ?>">
+                                            <a class="btn btn-warning btn-sm float-right" href="nota.php?id=<?php echo $row['id_order']; ?>#upload">
                                                 <i class="fas fa-upload">
                                                 </i> Upload
                                             </a>
@@ -148,7 +160,13 @@ if (isset($_POST["tombolbukti"])) {
                                     <?php endif; ?>
                                     <td>
                                         <a class="btn btn-success btn-sm" href="nota.php?id=<?php echo $row['id_order']; ?>">
-                                            Lihat Nota
+                                            <i class="fas fa-eye">
+                                            </i>&nbsp;&nbsp;Lihat Nota
+                                        </a>
+                                        <hr>
+                                        <a class="btn btn-danger btn-sm" onclick="return confirmDelOrder()" href="hapusorder.php?id=<?php echo $row['id_order']; ?>">
+                                            <i class="fas fa-trash">
+                                            </i>&nbsp;&nbsp;Cancel Order
                                         </a>
                                     </td>
                                 </tr>
@@ -158,8 +176,9 @@ if (isset($_POST["tombolbukti"])) {
                 </div>
             </div>
             <!-- Bukti Pembayaran -->
-            <?php if (isset($_GET['id_order'])) : ?>
-                <div id="myModal" class="modal fade">
+            <?php #if (isset($_GET['id_order'])) : 
+            ?>
+            <!-- <div id="myModal" class="modal fade">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -182,8 +201,9 @@ if (isset($_POST["tombolbukti"])) {
                             </form>
                         </div>
                     </div>
-                </div>
-            <?php endif; ?>
+                </div> -->
+            <?php # endif; 
+            ?>
         </div>
     </div>
 </section>

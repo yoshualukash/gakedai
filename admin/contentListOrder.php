@@ -56,13 +56,17 @@ if (isset($_GET['id'])) {
                                 <tbody>
                                     <?php
                                     include("connection.php");
-                                    $sql = "SELECT * FROM daftar_order ORDER BY id_order";
+                                    $sql = "SELECT * FROM daftar_order WHERE status_tracking<='2'";
                                     $result = mysqli_query($conn, $sql);
                                     while ($row = mysqli_fetch_array($result)) { ?>
                                         <tr>
                                             <td><b><?php echo $row['id_order']; ?></b></td>
                                             <td><b><?php echo $row['tanggal_beli']; ?></b></td>
-                                            <td><b>Rp. <?php echo number_format($row['total_order']); ?></b></td>
+                                            <td>
+                                                <div class="p-3 mb-2 bg-warning">
+                                                    <b><i class="fas fa-money-bill-wave fa-2x fa-pull-right"></i>Rp. <?php echo number_format($row['total_order']); ?></b>
+                                                </div>
+                                            </td>
                                             <!-- If Else Status Bayar-->
                                             <td>
                                                 <form action="update_statuspesan.php" method='post' enctype="multipart/form-data">
@@ -182,13 +186,18 @@ if (isset($_GET['id'])) {
                                                 <td>Belum ada bukti bayar</td>
                                             <?php endif; ?>
                                             <td>
-                                                <b>
-                                                    <a class="btn btn-success btn-sm float-right" href="listOrder.php?id=<?php echo $row['id_order']; ?>">
-                                                        <i class="fas fa-eye">
-                                                        </i>
-                                                        View
-                                                    </a>
-                                                </b>
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Action
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item text-white bg-green" href="listOrder.php?id=<?php echo $row['id_order']; ?>"><i class="fas fa-eye">
+                                                            </i>&nbsp; View Order</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item text-white bg-red" onclick="return confirmDelOrder()" href="delete_orderadmin.php?delID=<?php echo $row['id_order']; ?>"><i class="fas fa-trash">
+                                                            </i>&nbsp; Cancel Order</a>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                     <?php }; ?>
@@ -267,9 +276,13 @@ if (isset($_GET['id'])) {
                                                     <th colspan="4"> Ongkir</th>
                                                     <th>Rp.<?php echo number_format($detail['tarif']); ?></th>
                                                 </tr>
+                                                <tr>
+                                                    <th colspan="4"> Unique ID</th>
+                                                    <th>Rp.<?php echo number_format($detail['uniq_id']); ?></th>
+                                                </tr>
                                             </tfoot>
                                         </table>
-                                        <h3>Total Pembayaran : <?php echo number_format($detail['total_order']); ?></h3>
+                                        <h3>Total Pembayaran : Rp.<?php echo number_format($detail['total_order']); ?></h3>
                                     </div>
                                     <div class="modal-footer">
                                         <a href="listOrder.php" class="btn btn-secondary">Close</a>

@@ -80,9 +80,10 @@ function send_message($data)
     $email = $data["email"];
     $judul = $data["judul"];
     $pesan = $data["pesan"];
+    $status_review = 0;
 
     //tambahkan pesan baru ke database
-    mysqli_query($conn, "INSERT INTO pesan_saran VALUES('', '$nama', '$email', '$judul', '$pesan')");
+    mysqli_query($conn, "INSERT INTO pesan_saran VALUES('', '$nama', '$email', '$judul', '$pesan', $status_review)");
     return mysqli_affected_rows($conn);
 }
 function upload_buktibayar()

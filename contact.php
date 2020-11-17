@@ -61,17 +61,17 @@ if (isset($_POST['send_message'])) {
           </div>
           <div class="col-md-3 d-flex">
             <div class="dbox">
-              <p><span>Phone:</span> <a href="tel://1234567920">+62 822-1634-3083</a></p>
+              <p><span>Phone:</span> <a href="http://wa.me/6282216343083">+62 822-1634-3083</a></p>
             </div>
           </div>
           <div class="col-md-3 d-flex">
             <div class="dbox">
-              <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@gakedai.com</a></p>
+              <p><span>Email:</span> <a href="mailto:gakkedai@gmail.com">gakkedai@gmail.com</a></p>
             </div>
           </div>
           <div class="col-md-3 d-flex">
             <div class="dbox">
-              <p><span>Website</span> <a href="#">gakedai.com</a></p>
+              <p><span>Website</span> <a href="https://www.gakedai.com">gakedai.com</a></p>
             </div>
           </div>
         </div>

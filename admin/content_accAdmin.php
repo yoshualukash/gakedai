@@ -61,16 +61,6 @@
                                                 <td><?php echo $row['role']; ?></td>
                                             <?php endif; ?>
                                             <td class="project-actions text-right">
-                                                <a class="btn btn-info btn-sm" href="#">
-                                                    <i class="fas fa-eye">
-                                                    </i>
-                                                    View
-                                                </a>
-                                                <!-- <a class="btn btn-info btn-sm" href="#">
-                                                    <i class="fas fa-pencil-alt">
-                                                    </i>
-                                                    Edit
-                                                </a> -->
                                                 <a class="btn btn-danger btn-sm " onclick="return confirmDel()" href="delete_dataAdmin.php?delID=<?php echo $row['id']; ?>">
                                                     <i class="fas fa-trash">
                                                     </i>

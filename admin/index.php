@@ -112,16 +112,20 @@
             </div>
             <!-- /.col -->
             <div class="col-12 col-sm-6 col-md-3">
+              <?php $sql_4 = "SELECT SUM(total_order) AS value_sum FROM daftar_order WHERE status_tracking='3'";
+              $result_4 = mysqli_query($conn, $sql_4);
+              $row_4 = mysqli_fetch_assoc($result_4);
+              $total_revenue = $row_4['value_sum']; ?>
               <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3>Rp. <?php echo number_format(0); ?></h3>
+                  <h3>Rp. <?php echo number_format($total_revenue); ?></h3>
 
                   <p>Income / Revenue</p>
                 </div>
                 <div class="icon">
                   <i class="fas fa-money-bill-wave"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="listOrderHistory.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
               <!-- /.info-box -->
             </div>
@@ -157,7 +161,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    $sql = "SELECT * FROM daftar_order ORDER BY id_order desc LIMIT 5";
+                    $sql = "SELECT * FROM daftar_order WHERE status_tracking <='2' ORDER by id_order DESC";
                     $result = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_array($result)) { ?>
                       <tr>
@@ -188,11 +192,6 @@
                           <td><u><a style="color:blue" href="../buktibayar/<?php echo $row['buktibayar']; ?>">
                                 <h6 style="text-align:center;"><b>Lihat Bukti</b></h6>
                               </a></u>
-                            <hr>
-                            <a class="btn btn-danger btn-sm float-right" onclick="return confirmDel()" href="delete_buktibayar.php?delID=<?php echo $row['id_order']; ?>">
-                              <i class="fas fa-trash">
-                              </i>
-                            </a>
                           <?php else : ?>
                           <td>Belum ada bukti bayar</td>
                         <?php endif; ?>
@@ -220,7 +219,7 @@
                   <h3 class="card-title">Latest Members</h3>
 
                   <div class="card-tools">
-                    <span class="badge badge-danger">2 New Members</span>
+                    <span class="badge badge-danger"></span>
                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                     </button>
                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
@@ -231,7 +230,6 @@
                 <div class="card-body p-0">
                   <ul class="users-list clearfix">
                     <?php
-                    include("connection.php");
                     $sql = "SELECT * FROM account_google ORDER BY id DESC";
                     $result = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_array($result)) { ?>
@@ -275,7 +273,6 @@
           <div class="card-body p-0">
             <ul class="products-list product-list-in-card pl-2 pr-2">
               <?php
-              include("connection.php");
               $sql = "SELECT * FROM tblmenu ORDER BY id DESC LIMIT 5";
               $result = mysqli_query($conn, $sql);
               while ($row = mysqli_fetch_array($result)) { ?>

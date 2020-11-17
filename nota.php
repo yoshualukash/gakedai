@@ -49,6 +49,7 @@ if (isset($_POST["submit"])) {
                 <ul class='dropdown-menu'>
                     <li class='nav-item'><a href='profile.php' class='nav-link'><span style="color:red">Profile</span></a>
                     <li class='nav-item'><a href='myorder.php' class='nav-link'><span style="color:red">My Order</span></a>
+                    <li class='nav-item'><a href='myhistoryorder.php' class='nav-link'><span style="color:red">History Order</span></a>
                     <li class='nav-item'><a href='logout.php' class='nav-link'><span style="color:red">Logout</span></a>
                 </ul>
             </li>
@@ -193,10 +194,14 @@ $detail = $ambil1->fetch_assoc(); ?>
                                     <th colspan="4"> Ongkir </th>
                                     <th>Rp.<?php echo number_format($detail['tarif']); ?></th>
                                 </tr>
+                                <tr>
+                                    <th colspan="4"> Unique ID </th>
+                                    <th>Rp.<?php echo number_format($detail['uniq_id']); ?></th>
+                                </tr>
                             </tfoot>
                         </table>
                     </div>
-                    <div class="menus text-right ftco-animate">
+                    <div id="upload" class="menus text-right ftco-animate">
                         <h4>Total Pembayaran : Rp. <?php echo number_format($detail['total_order']); ?></h4>
                     </div>
                 </div>
@@ -211,7 +216,9 @@ $detail = $ambil1->fetch_assoc(); ?>
                             <img src="buktibayar/<?php echo $detail['buktibayar']; ?>" style="width: 50%; height: 50%" />
                         </div>
                     </div>
-                    <a href="hapusbukti.php?id=<?php echo $detail['id_order']; ?>" class="btn btn-sm btn-danger float-right">Hapus Bukti Bayar</a>
+                    <?php if ($detail['status_tracking'] <= 2) : ?>
+                        <a href="hapusbukti.php?id=<?php echo $detail['id_order']; ?>" class="btn btn-sm btn-danger float-right">Hapus Bukti Bayar</a>
+                    <?php endif; ?>
                 </div>
             <?php else : ?>
                 <div class='col-md-6'>
@@ -257,8 +264,8 @@ $detail = $ambil1->fetch_assoc(); ?>
                                 height: 100%;
                             }
 
-                            #Mandiri {
-                                background-color: #003267;
+                            #BTPN {
+                                background-color: #ff6302;
                             }
 
                             #GoPay {
@@ -273,17 +280,17 @@ $detail = $ambil1->fetch_assoc(); ?>
                                 background-color: #432575;
                             }
                         </style>
-                        <button class="tabmetode" onclick="openPage('Mandiri', this, '#003267')" id="defaultOpen">Mandiri</button>
+                        <button class="tabmetode" onclick="openPage('BTPN', this, '#ff6302')" id="defaultOpen">BTPN</button>
                         <button class="tabmetode" onclick="openPage('GoPay', this, '#00aa13')">GoPay</button>
                         <button class="tabmetode" onclick="openPage('Dana', this, '#108de9')">Dana</button>
                         <button class="tabmetode" onclick="openPage('OVO', this, '#432575')">OVO</button>
-                        <div id="Mandiri" class="tabmetodecontent">
+                        <div id="BTPN" class="tabmetodecontent">
                             <div class="menus text-center ftco-animate">
-                                <img src="images/mandiri_logo.png" style="width: 35%; height: 35%">
+                                <img src="images/btpn_logo.png" style="width: 35%; height: 35%">
                             </div>
                             <div class="text-center ftco-animate">
-                                <p><b>No. Rek : 137-001088-3276</b></p>
-                                <p>a/n GAKedai</p>
+                                <p><b>No. Rek : 9002-0817-149 </b></p>
+                                <p>a/n Prianugrah Widijatmiko</p>
                             </div>
                         </div>
 

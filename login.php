@@ -85,6 +85,7 @@ if (isset($_GET['code'])) {
         mysqli_affected_rows($conn);
         $_SESSION['google_login'] = true;
         $_SESSION['nama'] = $nama_depan;
+        $_SESSION['fullnama'] = $nama;
         $_SESSION['id'] = $oauth_uid;
         $_SESSION['email'] = $email;
         $result3 = mysqli_query($conn, "SELECT * FROM account_google WHERE email = '$email'");
@@ -95,7 +96,7 @@ if (isset($_GET['code'])) {
 			</script>";
         echo "<script>
 			alert('Selamat datang, $nama !');
-			document.location.href = 'menu.php';
+			document.location.href = 'emailwelcome.php';
             </script>";
     }
 }
@@ -172,9 +173,6 @@ else {
 
                 <div class="social-auth-links text-center mb-3">
                     <p>- OR -</p>
-                    <a href="#" class="btn btn-block btn-primary">
-                        <i class="fab fa-facebook mr-2"></i> Login using Facebook
-                    </a>
                     <a href="#" class="btn btn-block btn-danger" onclick="window.location = '<?php echo $authUrl; ?>'" name="login-google">
                         <i class="fab fa-google mr-2"></i> Login using Google
                     </a>

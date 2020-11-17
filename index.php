@@ -145,18 +145,33 @@ if (isset($_SESSION['login'])) {
 							<div class="menus d-flex ftco-animate">
 								<div class="menu-img img zoom" style="background-image: url(menu_image/<?php echo $row['photo']; ?>);"></div>
 								<div class="text">
-									<div class="d-flex">
-										<div class="one-half">
-											<h3><?php echo $row['name']; ?></h3>
+									<?php if ($row['status_menu'] == '0') : ?>
+										<div class="d-flex">
+											<div class="one-half">
+												<h3><?php echo $row['name']; ?></h3>
+											</div>
+											<div class="one-forth">
+												<span class="price">Rp.<?php echo $row['price']; ?></span>
+											</div>
 										</div>
-										<div class="one-forth">
-											<span class="price">Rp.<?php echo $row['price']; ?></span>
+										<p><span><?php echo $row['detail']; ?></span></p>
+										<div class="clearfix" role="group" aria-label="Basic example">
+											<a href="menu.php" class="btn btn-sm btn-success float-right">Pesan</a>
 										</div>
-									</div>
-									<p><span><?php echo $row['detail']; ?></span></p>
-									<div class="clearfix" role="group" aria-label="Basic example">
-										<a href="menu.php" class="btn btn-sm btn-success float-right">Pesan</a>
-									</div>
+									<?php else : ?>
+										<div class="d-flex">
+											<div class="one-half">
+												<h3><?php echo $row['name']; ?></h3>
+											</div>
+											<div class="one-forth">
+												<span class="price">Rp<?php echo number_format($row['price']); ?></span>
+											</div>
+										</div>
+										<p><span><?php echo $row['detail']; ?></span></p>
+										<div class="clearfix" role="group" aria-label="Basic example">
+											<h6 class="float-right" style="color:red">Menu Habis</h6>
+										</div>
+									<?php endif; ?>
 								</div>
 							</div>
 						<?php }; ?>
@@ -174,18 +189,33 @@ if (isset($_SESSION['login'])) {
 							<div class="menus d-flex ftco-animate">
 								<div class="menu-img img zoom" style="background-image: url(menu_image/<?php echo $row['photo']; ?>);"></div>
 								<div class="text">
-									<div class="d-flex">
-										<div class="one-half">
-											<h3><?php echo $row['name']; ?></h3>
+									<?php if ($row['status_menu'] == '0') : ?>
+										<div class="d-flex">
+											<div class="one-half">
+												<h3><?php echo $row['name']; ?></h3>
+											</div>
+											<div class="one-forth">
+												<span class="price">Rp.<?php echo number_format($row['price']); ?></span>
+											</div>
 										</div>
-										<div class="one-forth">
-											<span class="price">Rp.<?php echo number_format($row['price']); ?></span>
+										<p><span><?php echo $row['detail']; ?></span></p>
+										<div class="clearfix" role="group" aria-label="Basic example">
+											<a href="menu.php" class="btn btn-sm btn-success float-right">Pesan</a>
 										</div>
-									</div>
-									<p><span><?php echo $row['detail']; ?></span></p>
-									<div class="clearfix" role="group" aria-label="Basic example">
-										<a href="menu.php" class="btn btn-sm btn-success float-right">Pesan</a>
-									</div>
+									<?php else : ?>
+										<div class="d-flex">
+											<div class="one-half">
+												<h3><?php echo $row['name']; ?></h3>
+											</div>
+											<div class="one-forth">
+												<span class="price">Rp<?php echo number_format($row['price']); ?></span>
+											</div>
+										</div>
+										<p><span><?php echo $row['detail']; ?></span></p>
+										<div class="clearfix" role="group" aria-label="Basic example">
+											<h6 class="float-right" style="color:red">Menu Habis</h6>
+										</div>
+									<?php endif; ?>
 								</div>
 							</div>
 						<?php }; ?>
@@ -212,12 +242,12 @@ if (isset($_SESSION['login'])) {
 					<div class="col-md-7">
 						<div class="carousel-testimony owl-carousel ftco-owl">
 							<?php
-							$sql = "SELECT * FROM pesan_saran ORDER BY id ";
+							$sql = "SELECT * FROM pesan_saran WHERE status_review ='1' ORDER BY id ";
 							$result = mysqli_query($conn, $sql);
 							while ($row = mysqli_fetch_array($result)) { ?>
 								<div class="item">
 									<div class="testimony-wrap text-center py-4 pb-5">
-										<div class="user-img mb-4" style="background-image: url(images/admin1.jpg)">
+										<div class="user-img mb-4" style="background-image: url(images/defaultadmin.png)">
 											<span class="quote d-flex align-items-center justify-content-center">
 												<i class="icon-quote-left"></i>
 											</span>

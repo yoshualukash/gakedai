@@ -38,6 +38,7 @@
                                         <th>Email</th>
                                         <th>Judul</th>
                                         <th>Pesan</th>
+                                        <th>Status Review</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -58,17 +59,43 @@
                                             <td><?php echo $row['email']; ?></td>
                                             <td><?php echo $row['judul']; ?></td>
                                             <td><?php echo $row['pesan']; ?></td>
+                                            <td>
+                                                <form action="update_statusreview.php" method='post' enctype="multipart/form-data">
+                                                    <style>
+                                                        .redText {
+                                                            background-color: #E74C3C;
+                                                            color: white;
+                                                            font-weight: bold;
+                                                        }
+
+                                                        .greenText {
+                                                            background-color: green;
+                                                            color: white;
+                                                            font-weight: bold;
+                                                        }
+                                                    </style>
+
+                                                    <?php if ($row['status_review'] == 0) : ?>
+                                                        <select onchange="this.className=this.options[this.selectedIndex].className" class="form-control redText" name="status_review">
+                                                            <option value="0" class="form-control redText" selected>❌ Tidak Ditampilkan</option>
+                                                            <option value="1" class="form-control greenText">✅ Ditampilkan</option>
+                                                        </select>
+                                                    <?php elseif ($row['status_review'] == 1) : ?>
+                                                        <select onchange="this.className=this.options[this.selectedIndex].className" class="form-control greenText" name="status_review">
+                                                            <option value="0" class="form-control redText">❌ Tidak Ditampilkan</option>
+                                                            <option value="1" class="form-control greenText" selected>✅ Ditampilkan</option>
+                                                        </select>
+                                                    <?php endif; ?>
+                                                    <hr>
+                                                    <input type="hidden" name="id" class="form-control" value="<?php echo $row['id']; ?>" readonly>
+                                                    <button class="btn btn-info btn-sm float-right" type="submit" name="update_statusreview">
+                                                        <i class="fas fa-pencil-alt">
+                                                        </i>
+                                                        Update
+                                                    </button>
+                                                </form>
+                                            </td>
                                             <td class="project-actions text-right">
-                                                <a class="btn btn-info btn-sm" href="#">
-                                                    <i class="fas fa-eye">
-                                                    </i>
-                                                    View
-                                                </a>
-                                                <!-- <a class="btn btn-info btn-sm" href="#">
-                                                    <i class="fas fa-pencil-alt">
-                                                    </i>
-                                                    Edit
-                                                </a> -->
                                                 <a class="btn btn-danger btn-sm " onclick="return confirmDel()" href="delete_dataReview.php?delID=<?php echo $row['id']; ?>">
                                                     <i class="fas fa-trash">
                                                     </i>

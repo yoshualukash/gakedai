@@ -88,7 +88,7 @@ if (isset($_SESSION['login'])) {
               while ($row = mysqli_fetch_array($result)) { ?>
                 <div class="item">
                   <div class="testimony-wrap text-center py-4 pb-5">
-                    <div class="user-img mb-4" style="background-image: url(images/admin1.jpg)">
+                    <div class="user-img mb-4" style="background-image: url(images/defaultadmin.png)">
                       <span class="quote d-flex align-items-center justify-content-center">
                         <i class="icon-quote-left"></i>
                       </span>

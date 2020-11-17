@@ -156,11 +156,12 @@ if (!isset($_SESSION['keranjang'])) {
                         $ambil = $conn->query("SELECT * FROM ongkir WHERE id_ongkir='$id_ongkir'");
                         $arrayongkir = $ambil->fetch_assoc();
                         $tarif = $arrayongkir['tarif'];
+                        $uniq_id = rand(10, 100);
                         $nama_daerahnya = $arrayongkir['nama_daerah'];
-                        $total_order = $totalbelanja + $tarif;
+                        $total_order = $totalbelanja + $tarif - $uniq_id;
 
                         //Menyimpan data ke tabel order
-                        $sql5 = "INSERT INTO daftar_order(id_pelanggan, id_ongkir, tanggal_beli, waktu_beli, total_order, no_telepon, nama_daerah, tarif, alamat) VALUES('$id_pelanggan', '$id_ongkir', '$tanggal_beli', '$waktu_beli', '$total_order', '$no_telepon', '$nama_daerahnya', '$tarif', '$alamat')";
+                        $sql5 = "INSERT INTO daftar_order(id_pelanggan, id_ongkir, tanggal_beli, waktu_beli, total_order, no_telepon, nama_daerah, tarif, uniq_id, alamat) VALUES('$id_pelanggan', '$id_ongkir', '$tanggal_beli', '$waktu_beli', '$total_order', '$no_telepon', '$nama_daerahnya', '$tarif', '$uniq_id', '$alamat')";
                         $result5 = mysqli_query($conn, $sql5);
                         //ID pembelian barusan
                         $id_pembelian_barusan = $conn->insert_id;
@@ -177,13 +178,15 @@ if (!isset($_SESSION['keranjang'])) {
                             $result6 = mysqli_query($conn, $sql6);
                         }
                         //Mengosongkan keranjang session
+                        $_SESSION['idpelanggan'] = $id_pelanggan;
+                        $_SESSION['idpembelianbarusan'] = $id_pembelian_barusan;
                         unset($_SESSION['keranjang']);
                         //Tampilan dialihkan kehalaman nota pembelian barusan
                         // echo "<script>alert('Pembelian Sukses!);</script>";
                         // echo "<script>location='nota.php?id=$id_pembelian_barusan';</script>";
                         echo "<script>
 			            alert('Pembelian Sukses!');
-			            document.location.href = 'nota.php?id=$id_pembelian_barusan';
+			            document.location.href = 'emailcheckout.php';
                         </script>";
                     } ?>
                 </div>

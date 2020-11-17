@@ -14,7 +14,7 @@
                 <img src="../images/defaultadmin.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block"><?php echo $username; ?></a>
+                <a><?php echo $username; ?></a>
             </div>
         </div>
 
@@ -73,6 +73,22 @@
                                 <i class=" fas fa-list nav-icon"></i>
                                 <p>
                                     Order List
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="listOrderHistory.php" class="nav-link">
+                                <i class=" fas fa-history nav-icon"></i>
+                                <p>
+                                    Order History
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="listOrderCancel.php" class="nav-link">
+                                <i class=" fas fa-window-close nav-icon"></i>
+                                <p>
+                                    Order Cancel
                                 </p>
                             </a>
                         </li>

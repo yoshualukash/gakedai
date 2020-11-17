@@ -18,6 +18,16 @@
                 return false;
             }
         }
+
+        function confirmDelOrder() {
+            var x = confirm("Anda yakin ingin membatalkan order?");
+
+            if (x == true) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     </script>
     <link rel="icon" href="../images/logo_gakedai.png" type="image/png">
     <!-- Font Awesome Icons -->
