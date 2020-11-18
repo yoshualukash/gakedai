@@ -23,6 +23,15 @@ session_start();
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+<style>
+    .avatarround {
+        vertical-align: middle;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+    }
+</style>
+<a href="../index.php"><img src="https://i.ibb.co/t4rrY8K/logo-gakedai.png" class="avatarround" width="200" height="200" style="display: block;"></a>
 
 <body class="hold-transition login-page">
     <div class="login-box">
@@ -53,7 +62,7 @@ session_start();
                     </div>
                     <div class="row">
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="submit" name="adminsubmit" class="btn btn-primary btn-block">Sign In</button>
                         </div>
                         <!-- /.col -->
                     </div>

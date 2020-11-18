@@ -91,8 +91,6 @@ if (isset($_SESSION['login'])) {
 			<div class="container">
 				<div class="row no-gutters">
 					<div class="col-sm-5 img img-2 d-flex align-items-center justify-content-center justify-content-md-end" style="background-image: url(images/kedai-kopi.jpg); position: relative">
-						<a href="#" class=" popup-vimeo d-flex justify-content-center align-items-center">
-						</a>
 					</div>
 					<div class="col-sm-7 wrap-about py-5 ftco-animate">
 						<div class="heading-section mt-5 mb-4">

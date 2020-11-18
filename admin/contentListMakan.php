@@ -43,7 +43,6 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    include("connection.php");
                                     $sql = "SELECT * FROM tblmenu WHERE type='Makanan' ORDER BY id ";
                                     $result = mysqli_query($conn, $sql);
                                     while ($row = mysqli_fetch_array($result)) { ?>
@@ -58,7 +57,7 @@
                                                 </ul>
                                             </td>
                                             <td><?php echo $row['name']; ?></td>
-                                            <td><?php echo $row['price']; ?></td>
+                                            <td>Rp. <?php echo number_format($row['price']); ?></td>
                                             <td><?php echo $row['detail']; ?></td>
                                             <form action="update_statusmenumakan.php" method='post' enctype="multipart/form-data">
                                                 <td>

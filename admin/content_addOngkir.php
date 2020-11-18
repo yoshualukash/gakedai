@@ -1,5 +1,4 @@
 <?php
-require 'input_menu.php';
 if (isset($_POST["submit"])) {
     if (add_ongkir($_POST) > 0) {
         echo "<script>

@@ -36,7 +36,7 @@ if (isset($_SESSION['login'])) {
 		<section class="ftco-section">
 			<div class="container">
 				<div class="row justify-content-center mb-5 pb-2">
-					<div class="col-md-7 text-center heading-section ftco-animate">
+					<div id="listmenu" class="col-md-7 text-center heading-section ftco-animate">
 						<span class="subheading">Gakedai</span>
 						<h2 class="mb-4">Our Menu</h2>
 					</div>
@@ -44,53 +44,162 @@ if (isset($_SESSION['login'])) {
 				<div class="row">
 					<!-- Makanan Row -->
 					<div class="col-sm-8 menu-wrap">
-						<div class="heading-menu text-center ftco-animate">
-							<h3>Makanan</h3>
+						<style>
+							/* Style the tab */
+							.tab {
+								overflow: hidden;
+								border: 1px solid #ccc;
+								background-color: #f1f1f1;
+							}
+
+							/* Style the buttons that are used to open the tab content */
+							.tab button {
+								background-color: inherit;
+								float: left;
+								border: none;
+								outline: none;
+								cursor: pointer;
+								padding: 14px 16px;
+								transition: 0.3s;
+							}
+
+							/* Change background color of buttons on hover */
+							.tab button:hover {
+								background-color: #ddd;
+							}
+
+							/* Create an active/current tablink class */
+							.tab button.active {
+								background-color: #ccc;
+							}
+
+							/* Style the tab content */
+							.tabcontent {
+								display: none;
+								padding: 6px 12px;
+								border: 1px solid #ccc;
+								border-top: none;
+								animation: fadeEffect 1s;
+								/* Fading effect takes 1 second */
+							}
+
+							/* Go from zero to full opacity */
+							@keyframes fadeEffect {
+								from {
+									opacity: 0;
+								}
+
+								to {
+									opacity: 1;
+								}
+							}
+						</style>
+						<!-- Tab links -->
+						<div class="tab ftco-animate">
+							<button class="tablinks" onclick="openMenu(event, 'Makanan')" id="defaultOpen">Makanan</button>
+							<button class="tablinks" onclick="openMenu(event, 'Minuman')">Minuman</button>
 						</div>
-						<!-- Menu -->
-						<?php
-						$sql1 = "SELECT * FROM tblmenu WHERE type='Makanan' ORDER BY name ASC";
-						$result = mysqli_query($conn, $sql1);
-						while ($row = mysqli_fetch_array($result)) { ?>
-							<div class="menus d-flex ftco-animate">
-								<div class="menu-img img zoom" style="background-image: url(menu_image/<?php echo $row['photo']; ?>);"></div>
-								<div class="text">
-									<?php if ($row['status_menu'] == '0') : ?>
-										<div class="d-flex">
-											<div class="one-half">
-												<h3><?php echo $row['name']; ?></h3>
-											</div>
-											<div class="one-forth">
-												<span class="price">Rp<?php echo number_format($row['price']); ?></span>
-											</div>
-										</div>
-										<p><span><?php echo $row['detail']; ?></span></p>
-										<div class="clearfix" role="group" aria-label="Basic example">
-											<a href="beli.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-success float-right">Add to cart</a>
-										</div>
-									<?php else : ?>
-										<div class="d-flex">
-											<div class="one-half">
-												<h3><?php echo $row['name']; ?></h3>
-											</div>
-											<div class="one-forth">
-												<span class="price">Rp<?php echo number_format($row['price']); ?></span>
-											</div>
-										</div>
-										<p><span><?php echo $row['detail']; ?></span></p>
-										<div class="clearfix" role="group" aria-label="Basic example">
-											<h6 class="float-right" style="color:red">Menu Habis</h6>
-										</div>
-									<?php endif; ?>
+						<!-- Tab content -->
+						<div id="Makanan" class="tabcontent">
+							<div class="col-sm-12 menu-wrap">
+								<div class="heading-menu text-center ftco-animate">
+									<p></p>
+									<h3>Makanan</h3>
 								</div>
+								<!-- Menu -->
+								<?php
+								$sql1 = "SELECT * FROM tblmenu WHERE type='Makanan' ORDER BY id";
+								$result = mysqli_query($conn, $sql1);
+								while ($row = mysqli_fetch_array($result)) { ?>
+									<div class="menus d-flex ftco-animate">
+										<div class="menu-img img zoom" style="background-image: url(menu_image/<?php echo $row['photo']; ?>);"></div>
+										<div class="text">
+											<?php if ($row['status_menu'] == '0') : ?>
+												<div class="d-flex">
+													<div class="one-half">
+														<h3><?php echo $row['name']; ?></h3>
+													</div>
+													<div class="one-forth">
+														<span class="price">Rp<?php echo number_format($row['price']); ?></span>
+													</div>
+												</div>
+												<p><span><?php echo $row['detail']; ?></span></p>
+												<div class="clearfix" role="group" aria-label="Basic example">
+													<a href="beli.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-success float-right">Pesan</a>
+												</div>
+											<?php else : ?>
+												<div class="d-flex">
+													<div class="one-half">
+														<h3><?php echo $row['name']; ?></h3>
+													</div>
+													<div class="one-forth">
+														<span class="price">Rp<?php echo number_format($row['price']); ?></span>
+													</div>
+												</div>
+												<p><span><?php echo $row['detail']; ?></span></p>
+												<div class="clearfix" role="group" aria-label="Basic example">
+													<h6 class="float-right" style="color:red">Menu Habis</h6>
+												</div>
+											<?php endif; ?>
+										</div>
+									</div>
+								<?php }; ?>
 							</div>
-						<?php }; ?>
+						</div>
+
+						<div id="Minuman" class="tabcontent">
+							<div class="col-sm-12 menu-wrap">
+								<div class="heading-menu text-center ftco-animate">
+									<p></p>
+									<h3>Minuman</h3>
+								</div>
+								<!-- Menu -->
+								<?php
+								$sql1 = "SELECT * FROM tblmenu WHERE type='Minuman' ORDER BY id";
+								$result = mysqli_query($conn, $sql1);
+								while ($row = mysqli_fetch_array($result)) { ?>
+									<div class="menus d-flex ftco-animate">
+										<div class="menu-img img zoom" style="background-image: url(menu_image/<?php echo $row['photo']; ?>);"></div>
+										<div class="text">
+											<?php if ($row['status_menu'] == '0') : ?>
+												<div class="d-flex">
+													<div class="one-half">
+														<h3><?php echo $row['name']; ?></h3>
+													</div>
+													<div class="one-forth">
+														<span class="price">Rp<?php echo number_format($row['price']); ?></span>
+													</div>
+												</div>
+												<p><span><?php echo $row['detail']; ?></span></p>
+												<div class="clearfix" role="group" aria-label="Basic example">
+													<a href="beli.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-success float-right">Pesan</a>
+												</div>
+											<?php else : ?>
+												<div class="d-flex">
+													<div class="one-half">
+														<h3><?php echo $row['name']; ?></h3>
+													</div>
+													<div class="one-forth">
+														<span class="price">Rp<?php echo number_format($row['price']); ?></span>
+													</div>
+												</div>
+												<p><span><?php echo $row['detail']; ?></span></p>
+												<div class="clearfix" role="group" aria-label="Basic example">
+													<h6 class="float-right" style="color:red">Menu Habis</h6>
+												</div>
+											<?php endif; ?>
+										</div>
+									</div>
+								<?php }; ?>
+							</div>
+						</div>
+
 					</div>
 					<div class="col-sm-4 menu-wrap">
 						<div class="heading-menu text-center ftco-animate">
 							<h3>🛒 Pesanan Anda </h3>
 						</div>
-						<div class="menus text-center ftco-animate">
+						<div class="text-center ftco-animate">
 							<table class="table table-striped">
 								<thead>
 									<tr>
@@ -131,66 +240,48 @@ if (isset($_SESSION['login'])) {
 											<th>Rp.<?php echo number_format($totalbelanja); ?></th>
 										</tr>
 										<tr>
+											<th colspan="4"><a href="resetitem.php" class="btn btn-sm btn-danger float-right">Reset Cart</a></th>
 											<th colspan="5"><a href="checkout.php" class="btn btn-sm btn-warning float-right">Checkout</a></th>
 										</tr>
 									<?php else : ?>
 										<tr>
-											<th colspan="4"> Total Belanja </th>
-											<th>Rp. 0</th>
+											<th colspan='5'>
+												<h6 style='text-align: center; color:grey;'>Empty</h6>
+											</th>
 										</tr>
 									<?php endif; ?>
-
-
 								</tfoot>
 							</table>
 						</div>
 					</div>
-					<!-- Minuman Row -->
-					<div class="col-sm-8 menu-wrap">
-						<div class="heading-menu text-center ftco-animate">
-							<h3>Minuman</h3>
-						</div>
-						<?php
-						$sql2 = "SELECT * FROM tblmenu WHERE type='Minuman' ORDER BY name ASC";
-						$result = mysqli_query($conn, $sql2);
-						while ($row = mysqli_fetch_array($result)) { ?>
-							<div class="menus d-flex ftco-animate">
-								<div class="menu-img img zoom" style="background-image: url(menu_image/<?php echo $row['photo']; ?>);"></div>
-								<div class="text">
-									<?php if ($row['status_menu'] == '0') : ?>
-										<div class="d-flex">
-											<div class="one-half">
-												<h3><?php echo $row['name']; ?></h3>
-											</div>
-											<div class="one-forth">
-												<span class="price">Rp<?php echo number_format($row['price']); ?></span>
-											</div>
-										</div>
-										<p><span><?php echo $row['detail']; ?></span></p>
-										<div class="clearfix" role="group" aria-label="Basic example">
-											<a href="beli.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-success float-right">Add to cart</a>
-										</div>
-									<?php else : ?>
-										<div class="d-flex">
-											<div class="one-half">
-												<h3><?php echo $row['name']; ?></h3>
-											</div>
-											<div class="one-forth">
-												<span class="price">Rp<?php echo number_format($row['price']); ?></span>
-											</div>
-										</div>
-										<p><span><?php echo $row['detail']; ?></span></p>
-										<div class="clearfix" role="group" aria-label="Basic example">
-											<h6 class="float-right" style="color:red">Menu Habis</h6>
-										</div>
-									<?php endif; ?>
-								</div>
-							</div>
-						<?php }; ?>
-					</div>
 				</div>
 
 		</section>
+		<script>
+			function openMenu(evt, menuName) {
+				// Declare all variables
+				var i, tabcontent, tablinks;
+
+				// Get all elements with class="tabcontent" and hide them
+				tabcontent = document.getElementsByClassName("tabcontent");
+				for (i = 0; i < tabcontent.length; i++) {
+					tabcontent[i].style.display = "none";
+				}
+
+				// Get all elements with class="tablinks" and remove the class "active"
+				tablinks = document.getElementsByClassName("tablinks");
+				for (i = 0; i < tablinks.length; i++) {
+					tablinks[i].className = tablinks[i].className.replace(" active", "");
+				}
+
+				// Show the current tab, and add an "active" class to the button that opened the tab
+				document.getElementById(menuName).style.display = "block";
+				evt.currentTarget.className += " active";
+
+			}
+			// Get the element with id="defaultOpen" and click on it
+			document.getElementById("defaultOpen").click();
+		</script>
 		<?php
 		include 'includes/footer.php';
 		?>

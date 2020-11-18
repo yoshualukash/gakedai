@@ -37,10 +37,7 @@ if (isset($_SESSION['login'])) {
     <section class="ftco-section ftco-wrap-about ftco-no-pb ftco-no-pt">
       <div class="container">
         <div class="row no-gutters">
-          <div class="col-sm-5 img img-2 d-flex align-items-center justify-content-center justify-content-md-end" style="background-image: url(images/about.jpg); position: relative">
-            <a href="https://vimeo.com/45830194" class="icon-video popup-vimeo d-flex justify-content-center align-items-center">
-              <span class="ion-ios-play"></span>
-            </a>
+          <div class="col-sm-5 img img-2 d-flex align-items-center justify-content-center justify-content-md-end" style="background-image: url(images/kedai-kopi.jpg); position: relative">
           </div>
           <div class="col-sm-7 wrap-about py-5 ftco-animate">
             <div class="heading-section mt-5 mb-4">
@@ -83,7 +80,7 @@ if (isset($_SESSION['login'])) {
           <div class="col-md-7">
             <div class="carousel-testimony owl-carousel ftco-owl">
               <?php
-              $sql = "SELECT * FROM pesan_saran ORDER BY id";
+              $sql = "SELECT * FROM pesan_saran WHERE status_review ='1' ORDER BY id";
               $result = mysqli_query($conn, $sql);
               while ($row = mysqli_fetch_array($result)) { ?>
                 <div class="item">

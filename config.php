@@ -1,10 +1,10 @@
 <?php
-
+include('dbconfig.php');
 // Database configuration
 define('DB_HOST', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'gakedai');
+define('DB_USERNAME', $dbuser);
+define('DB_PASSWORD', $dbpw);
+define('DB_NAME', $dbdatabase);
 define('DB_USER_TBL', 'account_google');
 
 // Google API configuration

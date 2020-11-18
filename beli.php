@@ -6,7 +6,7 @@ if (isset($_SESSION['keranjang'][$id_produk])) {
 } else {
     $_SESSION['keranjang'][$id_produk] = 1;
 }
-echo "<script>location='menu.php';</script>"; 
+echo "<script>location='menu.php#listmenu';</script>"; 
 
 
 // echo '<pre>';

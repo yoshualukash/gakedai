@@ -43,10 +43,8 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    include("connection.php");
                                     $sql = "SELECT * FROM tblmenu WHERE type='Minuman' ORDER BY id ";
                                     $result = mysqli_query($conn, $sql);
-                                    $i = 1;
                                     while ($row = mysqli_fetch_array($result)) { ?>
                                         <!--open of while -->
                                         <tr>
@@ -59,7 +57,7 @@
                                                 </ul>
                                             </td>
                                             <td><?php echo $row['name']; ?></td>
-                                            <td><?php echo $row['price']; ?></td>
+                                            <td>Rp. <?php echo number_format($row['price']); ?></td>
                                             <td><?php echo $row['detail']; ?></td>
                                             <form action="update_statusmenuminum.php" method='post' enctype="multipart/form-data">
                                                 <td>

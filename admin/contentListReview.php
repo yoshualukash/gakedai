@@ -44,7 +44,6 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    include("connection.php");
                                     $sql = "SELECT * FROM pesan_saran ORDER BY id ";
                                     $result = mysqli_query($conn, $sql);
                                     $i = 1;

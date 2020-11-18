@@ -69,3 +69,9 @@ function add_ongkir($data)
     $sql = "INSERT INTO ongkir VALUES(NULL, '$nama_daerah', '$tarif')";
     return mysqli_query($conn, $sql);
 }
+function rupiah($angka)
+{
+
+    $hasil_rupiah = "Rp" . number_format($angka, 2, ',', '.');
+    return $hasil_rupiah;
+}

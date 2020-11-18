@@ -1,5 +1,4 @@
 <?php
-require 'input_menu.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 } ?>

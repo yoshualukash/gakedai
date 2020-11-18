@@ -7,4 +7,4 @@ if ($_SESSION['keranjang'][$id_produk] > 0) {
 if ($_SESSION['keranjang'][$id_produk] == 0) {
     unset($_SESSION['keranjang'][$id_produk]);
 }
-echo "<script>location='menu.php';</script>";
+echo "<script>location='menu.php#listmenu';</script>";

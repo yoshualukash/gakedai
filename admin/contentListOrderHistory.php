@@ -1,5 +1,4 @@
 <?php
-require 'input_menu.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 } ?>
@@ -45,10 +44,10 @@ if (isset($_GET['id'])) {
                                 <thead>
                                     <tr>
                                         <th scope="col">ID Order</th>
-                                        <th scope="col">Tanggal Beli</th>
+                                        <th scope="col">Waktu Beli</th>
                                         <th scope="col">Total Order</th>
-                                        <th scope="col">Status Bayar</th>
                                         <th scope="col">Status Order</th>
+                                        <th scope="col">Waktu Selesai Order</th>
                                         <th scope="col">Bukti Bayar</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -59,25 +58,24 @@ if (isset($_GET['id'])) {
                                     $sql = "SELECT * FROM daftar_order WHERE status_tracking ='3'";
                                     $result = mysqli_query($conn, $sql);
                                     while ($row = mysqli_fetch_array($result)) { ?>
+                                        <?php $tanggal_beli = date_create_from_format('Y-m-d', $row['tanggal_beli']); ?>
                                         <tr>
                                             <td><b><?php echo $row['id_order']; ?></b></td>
-                                            <td><b><?php echo $row['tanggal_beli']; ?></b></td>
+                                            <td><b><?php echo date_format($tanggal_beli, "d-M-Y"); ?>
+                                                    <hr><?php echo $row['waktu_beli']; ?></b></td>
                                             <td>
                                                 <div class="p-3 mb-2 bg-warning">
                                                     <b><i class="fas fa-money-bill-wave fa-2x fa-pull-right"></i>Rp. <?php echo number_format($row['total_order']); ?></b>
                                                 </div><b></b>
-                                            </td>
-                                            <!-- If Else Status Bayar-->
-                                            <td>
-                                                <div class="p-3 mb-2 bg-success">
-                                                    <b><i class="fas fa-check-circle fa-2x fa-pull-right"></i>Sudah Lunas</b>
-                                                </div>
                                             </td>
                                             <!-- Status Order -->
                                             <td>
                                                 <div class="p-3 mb-2 bg-success">
                                                     <b><i class="fas fa-check-circle fa-2x fa-pull-right"></i>Pesanan Sudah Diantar</b>
                                                 </div>
+                                            </td>
+                                            <!-- Waktu Selesai Order -->
+                                            <td style="text-align:center;"><b><?php echo $row['waktu_selesai']; ?></b>
                                             </td>
                                             <!-- If Else Bukti Bayar -->
                                             <td><u><a style="color:blue" href="../buktibayar/<?php echo $row['buktibayar']; ?>">

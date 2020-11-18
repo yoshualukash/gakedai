@@ -9,7 +9,7 @@
         </ul>
     </li>
 <?php else : ?>
-    <li class="nav-item"><a href="login.php" class="nav-link">Login / Register</a></li>
+    <li class="nav-item"><a href="login.php" class="nav-link">Login</a></li>
 <?php endif; ?>
 
 </ul>

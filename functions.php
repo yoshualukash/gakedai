@@ -1,6 +1,7 @@
 <?php
 //Koneksi ke database
-$conn = mysqli_connect("localhost", "root", "", "gakedai");
+include('dbconfig.php');
+$conn = mysqli_connect("localhost", $dbuser, $dbpw, $dbdatabase);
 function query($query)
 {
     global $conn;
@@ -10,68 +11,6 @@ function query($query)
         $rows[] = $row;
     }
     return $rows;
-}
-function register($data)
-{
-    global $conn;
-    $nama = $data["nama"];
-    $email = $data["email"];
-    $username = strtolower(stripslashes($data["username"]));
-    $password = mysqli_real_escape_string($conn, $data["password"]);
-    $password2 = mysqli_real_escape_string($conn, $data["password2"]);
-
-    //cek username sudah ada atau belum
-    $result = mysqli_query($conn, "SELECT username FROM account_usr WHERE username = '$username'");
-    $result1 = mysqli_query($conn, "SELECT username FROM account_google WHERE username = '$username'");
-    if (mysqli_fetch_assoc($result)) {
-        echo "<script>
-            alert('Username yang dipilih sudah terdaftar');
-            </script>";
-        return false;
-    } elseif (mysqli_fetch_assoc($result1)) {
-        echo "<script>
-            alert('Username yang dipilih sudah terdaftar');
-            </script>";
-        return false;
-    }
-
-    //cek konfirmasi password
-    if ($password != $password2) {
-        echo "<script>
-            alert('Konfirmasi password tidak sesuai!');
-            </script>";
-        return false;
-    }
-    //enkripsi passwordnya
-    $password = password_hash($password, PASSWORD_DEFAULT);
-
-    //tambahkan user baru ke database
-    mysqli_query($conn, "INSERT INTO account_usr VALUES('', '$nama', '$email', '$username', '$password')");
-    return mysqli_affected_rows($conn);
-}
-
-function login($data)
-{
-    global $conn;
-    $username = $data["username"];
-    $password = $data["password"];
-    $_SESSION['username'] = $username;
-    $result = mysqli_query($conn, "SELECT * FROM account_usr WHERE username = '$username'");
-    $row1 = mysqli_fetch_assoc($result);
-    $_SESSION['id_user'] = $row1['id'];
-    //Cek username di database
-    if (mysqli_num_rows($result) === 1) {
-        $row = mysqli_fetch_assoc($result);
-        //Cek password
-        if (password_verify($password, $row['password'])) {
-            $_SESSION['login'] = true;
-            echo "<script>
-			alert('Selamat datang, $username !');
-			document.location.href = 'index.php';
-            </script>";
-            return exit;
-        }
-    }
 }
 function send_message($data)
 {

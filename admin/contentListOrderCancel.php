@@ -1,5 +1,4 @@
 <?php
-require 'input_menu.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 } ?>
@@ -55,7 +54,6 @@ if (isset($_GET['id'])) {
                                 </thead>
                                 <tbody>
                                     <?php
-                                    include("connection.php");
                                     $sql = "SELECT * FROM daftar_order WHERE status_tracking >='4'";
                                     $result = mysqli_query($conn, $sql);
                                     while ($row = mysqli_fetch_array($result)) { ?>
@@ -100,11 +98,6 @@ if (isset($_GET['id'])) {
                                                 <td><u><a style="color:blue" href="../buktibayar/<?php echo $row['buktibayar']; ?>">
                                                             <h6 style="text-align:center;"><b>Lihat Bukti</b></h6>
                                                         </a></u>
-                                                    <hr>
-                                                    <a class="btn btn-danger btn-sm float-right" onclick="return confirmDel()" href="delete_buktibayar.php?delID=<?php echo $row['id_order']; ?>">
-                                                        <i class="fas fa-trash">
-                                                        </i>
-                                                    </a>
                                                 <?php else : ?>
                                                 <td>Belum ada bukti bayar</td>
                                             <?php endif; ?>

@@ -14,7 +14,7 @@
                 <img src="../images/defaultadmin.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a><?php echo $username; ?></a>
+                <a><?php echo $nama_admin; ?></a>
             </div>
         </div>
 
@@ -103,14 +103,6 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item ">
-                            <a href="list_accUsr.php" class="nav-link">
-                                <i class="nav-icon fas fa-user"></i>
-                                <p>
-                                    User
-                                </p>
-                            </a>
-                        </li>
                         <li class="nav-item ">
                             <a href="list_accGoogle.php" class="nav-link">
                                 <i class="fab fa-google nav-icon"></i>

@@ -228,7 +228,8 @@ $detail = $ambil1->fetch_assoc(); ?>
                             <input type="file" name="buktibayar" id="buktibayar" class="form-control">
                             <input type="hidden" name="id" class="form-control" value="<?php echo $id; ?>" readonly>
                             <button class="btn btn-warning float-right" type="submit" name="submit">
-                                Upload
+                                <i class="fas fa-upload">
+                                </i> Upload
                             </button>
                         </form>
                     </div>

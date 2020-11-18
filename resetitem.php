@@ -1,6 +1,4 @@
 <?php
 session_start();
-$id_produk = $_GET['id'];
-$_SESSION['keranjang'][$id_produk] += 1;
-
+unset($_SESSION['keranjang']);
 echo "<script>location='menu.php#listmenu';</script>";

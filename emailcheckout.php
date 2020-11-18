@@ -199,6 +199,6 @@ $mail->Body = $mailContent;
 // Kirim email
 if ($mail->send()) {
     echo "<script>
-    window.location.assign('nota.php?id=" . $id_pembelian_barusan . ".php')
+    window.location.assign('nota.php?id=" . $id_pembelian_barusan . "')
 </script>";
 }
