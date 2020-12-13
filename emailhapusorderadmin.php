@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
 }
 require 'functions.php';
 include('emailconn.php');
-$id_order = $_SESSION['id_order'];
+$id_order = $_GET['delID'];
 //Fetch data ordernya
 $ambilorder = $conn->query("SELECT * FROM daftar_order WHERE id_order='$id_order'");
 $detailorder = $ambilorder->fetch_assoc();

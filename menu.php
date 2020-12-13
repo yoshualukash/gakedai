@@ -98,6 +98,7 @@ if (isset($_SESSION['login'])) {
 						<div class="tab ftco-animate">
 							<button class="tablinks" onclick="openMenu(event, 'Makanan')" id="defaultOpen">Makanan</button>
 							<button class="tablinks" onclick="openMenu(event, 'Minuman')">Minuman</button>
+							<button class="tablinks" onclick="openMenu(event, 'Kue Kering')">Kue Kering</button>
 						</div>
 						<!-- Tab content -->
 						<div id="Makanan" class="tabcontent">
@@ -108,7 +109,7 @@ if (isset($_SESSION['login'])) {
 								</div>
 								<!-- Menu -->
 								<?php
-								$sql1 = "SELECT * FROM tblmenu WHERE type='Makanan' ORDER BY id";
+								$sql1 = "SELECT * FROM tblmenu WHERE type='Makanan' ORDER BY status_menu";
 								$result = mysqli_query($conn, $sql1);
 								while ($row = mysqli_fetch_array($result)) { ?>
 									<div class="menus d-flex ftco-animate">
@@ -155,7 +156,53 @@ if (isset($_SESSION['login'])) {
 								</div>
 								<!-- Menu -->
 								<?php
-								$sql1 = "SELECT * FROM tblmenu WHERE type='Minuman' ORDER BY id";
+								$sql1 = "SELECT * FROM tblmenu WHERE type='Minuman' ORDER BY status_menu";
+								$result = mysqli_query($conn, $sql1);
+								while ($row = mysqli_fetch_array($result)) { ?>
+									<div class="menus d-flex ftco-animate">
+										<div class="menu-img img zoom" style="background-image: url(menu_image/<?php echo $row['photo']; ?>);"></div>
+										<div class="text">
+											<?php if ($row['status_menu'] == '0') : ?>
+												<div class="d-flex">
+													<div class="one-half">
+														<h3><?php echo $row['name']; ?></h3>
+													</div>
+													<div class="one-forth">
+														<span class="price">Rp<?php echo number_format($row['price']); ?></span>
+													</div>
+												</div>
+												<p><span><?php echo $row['detail']; ?></span></p>
+												<div class="clearfix" role="group" aria-label="Basic example">
+													<a href="beli.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-success float-right">Pesan</a>
+												</div>
+											<?php else : ?>
+												<div class="d-flex">
+													<div class="one-half">
+														<h3><?php echo $row['name']; ?></h3>
+													</div>
+													<div class="one-forth">
+														<span class="price">Rp<?php echo number_format($row['price']); ?></span>
+													</div>
+												</div>
+												<p><span><?php echo $row['detail']; ?></span></p>
+												<div class="clearfix" role="group" aria-label="Basic example">
+													<h6 class="float-right" style="color:red">Menu Habis</h6>
+												</div>
+											<?php endif; ?>
+										</div>
+									</div>
+								<?php }; ?>
+							</div>
+						</div>
+						<div id="Kue Kering" class="tabcontent">
+							<div class="col-sm-12 menu-wrap">
+								<div class="heading-menu text-center ftco-animate">
+									<p></p>
+									<h3>Kue Kering</h3>
+								</div>
+								<!-- Menu -->
+								<?php
+								$sql1 = "SELECT * FROM tblmenu WHERE `code`='MAK_NST'";
 								$result = mysqli_query($conn, $sql1);
 								while ($row = mysqli_fetch_array($result)) { ?>
 									<div class="menus d-flex ftco-animate">
@@ -197,7 +244,7 @@ if (isset($_SESSION['login'])) {
 					</div>
 					<div class="col-sm-4 menu-wrap">
 						<div class="heading-menu text-center ftco-animate">
-							<h3>🛒 Pesanan Anda </h3>
+							<h3>ðŸ›’ Pesanan Anda </h3>
 						</div>
 						<div class="text-center ftco-animate">
 							<table class="table table-striped">

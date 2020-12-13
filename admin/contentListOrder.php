@@ -16,12 +16,12 @@ if (isset($_GET['id'])) {
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>List Order</h1>
+                    <h1>List New Order</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item active">List Order</li>
+                        <li class="breadcrumb-item active">List New Order</li>
                     </ol>
                 </div>
             </div>
@@ -36,7 +36,7 @@ if (isset($_GET['id'])) {
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">List Order GAKedai</h3>
+                            <h3 class="card-title">List New Order GAKedai</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">

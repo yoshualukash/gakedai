@@ -10,7 +10,7 @@ if (mysqli_query($conn, $sqlstatus)) {
     echo "<script>
             alert('Order telah dibatalkan oleh admin!');
 			</script>";
-    header('location:../emailhapusorderadmin.php');
+    header('location:../emailhapusorderadmin.php?delID=' . $id);
 } else {
     die('Could not delete record:' . mysqli_error($conn));
 }

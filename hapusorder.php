@@ -9,7 +9,7 @@ if (mysqli_query($conn, $sqlstatus)) {
     echo "<script>
             alert('Order telah anda batalkan!');
 			</script>";
-    header('location:emailhapusorderuser.php');
+    header('location:emailhapusorderuser.php?id=' . $id);
 } else {
     die('Could not delete record:' . mysqli_error($conn));
 }

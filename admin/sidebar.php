@@ -72,7 +72,7 @@
                             <a href="listOrder.php" class="nav-link">
                                 <i class=" fas fa-list nav-icon"></i>
                                 <p>
-                                    Order List
+                                    New Order List
                                 </p>
                             </a>
                         </li>

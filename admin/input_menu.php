@@ -1,6 +1,5 @@
 <?php
 
-include('connection.php');
 function upload_menuphoto()
 {
     $namaFile = $_FILES["photo"]["name"];
@@ -58,7 +57,7 @@ function add_menu($data)
         $photo = upload_menuphoto();
     }
 
-    $sql = "INSERT INTO tblmenu VALUES(NULL, '$name', '$code', '$photo', '$price', '$type', '$detail')";
+    $sql = "INSERT INTO tblmenu VALUES(NULL, '$name', '$code', '$photo', '$price', '$type', '$detail', '')";
     return mysqli_query($conn, $sql);
 }
 function add_ongkir($data)

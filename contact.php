@@ -86,7 +86,7 @@ if (isset($_POST['send_message'])) {
                     <div class="col-md-3 d-flex">
                         <div class="dbox">
                             <p><span>Address:</span></p>
-                            <p><a href="https://goo.gl/maps/2grLHVihVSm7HRzZ6">Jl. Batu Ampar II No.49, RT.6/RW.3, Batu Ampar, Kec. Kramat jati, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13520</a></p>
+                            <p><a href="https://g.page/gakedai">Jl. Batu Ampar II No.49, RT.6/RW.3, Batu Ampar, Kec. Kramat jati, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13520</a></p>
                         </div>
                     </div>
                     <div class="col-md-3 d-flex">

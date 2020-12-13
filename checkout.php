@@ -147,8 +147,8 @@ if (!isset($_SESSION['keranjang'])) {
                     <?php if (isset($_POST['checkout'])) {
                         $id_pelanggan = $id_user;
                         $id_ongkir = $_POST['id_ongkir'];
-                        $tanggal_beli = date("Y-m-d");
                         date_default_timezone_set("Asia/Jakarta");
+                        $tanggal_beli = date("Y-m-d");
                         $waktu_beli = date("H:i:s");
                         $alamat = $_POST['alamat'];
                         $no_telepon = $_POST['no_telepon'];

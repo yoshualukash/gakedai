@@ -59,19 +59,19 @@
                     <div class="row">
                         <!-- Order Box -->
                         <div class="col-12 col-sm-6 col-md-3">
-                            <?php $sql_1 = "SELECT * FROM daftar_order WHERE status_tracking <='2'";
+                            <?php $sql_1 = "SELECT * FROM daftar_order WHERE status_tracking ='3'";
                             $result_1 = mysqli_query($conn, $sql_1);
                             $row_1 = mysqli_num_rows($result_1); ?>
                             <div class="small-box bg-success">
                                 <div class="inner">
                                     <h3><?php echo $row_1; ?></h3>
 
-                                    <p>Orders</p>
+                                    <p>Total Finished Order</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-ios-cart"></i>
                                 </div>
-                                <a href="listOrder.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="listOrderHistory.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <!-- Total Menu Box -->
